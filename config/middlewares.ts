@@ -9,8 +9,8 @@ export default [
       origin: [
         'http://localhost:5173',
         'https://ai-resume-buildr.netlify.app',
-        'https://ai-resume-admin-9iqm.onrender.com', // Added Render URL just in case
-        '*', // Temporary wildcard for debugging
+        'https://ai-resume-admin-9iqm.onrender.com',
+        '*', 
       ],
     },
   },
