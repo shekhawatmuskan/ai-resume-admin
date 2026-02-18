@@ -1,61 +1,104 @@
-# 🚀 Getting started with Strapi
+# ⚙️ AI Resume Builder: The Control Room (Backend)
 
-Strapi comes with a full featured [Command Line Interface](https://docs.strapi.io/dev-docs/cli) (CLI) which lets you scaffold and manage your project in seconds.
+<div align="center">
 
-### `develop`
+![Strapi](https://img.shields.io/badge/Strapi-v5-2F2E8B?style=for-the-badge&logo=strapi&logoColor=white)
+![PostgreSQL](https://img.shields.io/badge/PostgreSQL-v16-4169E1?style=for-the-badge&logo=postgresql&logoColor=white)
+![TypeScript](https://img.shields.io/badge/TypeScript-007ACC?style=for-the-badge&logo=typescript&logoColor=white)
+![Neon](https://img.shields.io/badge/Neon-DB-00E599?style=for-the-badge&logo=neon&logoColor=black)
 
-Start your Strapi application with autoReload enabled. [Learn more](https://docs.strapi.io/dev-docs/cli#strapi-develop)
+Handling the logic, orchestration, and persistence for the [AI Resume Builder Frontend](https://github.com/shekhawatmuskan/ai-resume-builder).
 
-```
-npm run develop
-# or
-yarn develop
-```
-
-### `start`
-
-Start your Strapi application with autoReload disabled. [Learn more](https://docs.strapi.io/dev-docs/cli#strapi-start)
-
-```
-npm run start
-# or
-yarn start
-```
-
-### `build`
-
-Build your admin panel. [Learn more](https://docs.strapi.io/dev-docs/cli#strapi-build)
-
-```
-npm run build
-# or
-yarn build
-```
-
-## ⚙️ Deployment
-
-Strapi gives you many possible deployment options for your project including [Strapi Cloud](https://cloud.strapi.io). Browse the [deployment section of the documentation](https://docs.strapi.io/dev-docs/deployment) to find the best solution for your use case.
-
-```
-yarn strapi deploy
-```
-
-## 📚 Learn more
-
-- [Resource center](https://strapi.io/resource-center) - Strapi resource center.
-- [Strapi documentation](https://docs.strapi.io) - Official Strapi documentation.
-- [Strapi tutorials](https://strapi.io/tutorials) - List of tutorials made by the core team and the community.
-- [Strapi blog](https://strapi.io/blog) - Official Strapi blog containing articles made by the Strapi team and the community.
-- [Changelog](https://strapi.io/changelog) - Find out about the Strapi product updates, new features and general improvements.
-
-Feel free to check out the [Strapi GitHub repository](https://github.com/strapi/strapi). Your feedback and contributions are welcome!
-
-## ✨ Community
-
-- [Discord](https://discord.strapi.io) - Come chat with the Strapi community including the core team.
-- [Forum](https://forum.strapi.io/) - Place to discuss, ask questions and find answers, show your Strapi project and get feedback or just talk with other Community members.
-- [Awesome Strapi](https://github.com/strapi/awesome-strapi) - A curated list of awesome things related to Strapi.
+</div>
 
 ---
 
-<sub>🤫 Psst! [Strapi is hiring](https://strapi.io/careers).</sub>
+## 🌟 The Core Mission
+
+While the frontend provides the canvas, **ai-resume-admin** is the "Control Room". It serves as a headless power plant, built with **Strapi 5**, that manages complex user permissions, resume data structures, and acts as the secure bridge between the user's interface and the **Neon PostgreSQL** database.
+
+### ⚡ Engine Capabilities
+
+- **🔐 Robust Data Shield:** Centralized authentication and permission management via Strapi's Users-Permissions plugin.
+- **📦 Structured Content Types:** Dynamic schemas for Resumes, Experience, Education, and Skills, optimized for rapid API delivery.
+- **🚀 Performance-First Architecture:** Built with TypeScript for type safety and integrated with Neon for serverless database scalability.
+- **🛠️ Admin Command Center:** A powerful UI for managing user data, monitoring activity, and fine-tuning content without touching code.
+
+---
+
+## 🏗️ Backend Flow
+
+How data migrates from user intent to secure persistence.
+
+```mermaid
+graph LR
+    API[REST/GraphQL API] -->|Middleware| Auth{Auth/RBAC}
+    Auth -->|Logical Hooks| Controller[Strapi Controllers]
+    Controller -->|Query Engine| ORM[Strapi Database Layer]
+    ORM -->|Encrypted Tunnel| DB[(PostgreSQL Neon)]
+
+    subgraph "Internal Logic"
+        Controller --- Service[Business Logic]
+        Service --- Schema[Resume Schema]
+    end
+
+    style API fill:#69f,stroke:#333
+    style DB fill:#00E599,stroke:#333
+    style Auth fill:#f66,stroke:#333
+```
+
+---
+
+## 🔌 Ecosystem Role
+
+This repository is strictly the **Backend Core**. It is designed to work in tandem with:
+
+- 🎨 **[Frontend Repository](https://github.com/shekhawatmuskan/ai-resume-builder):** The React-based consumer of this API.
+- 🧪 **[Gemini AI Engine]:** Orchestrated via the frontend, with results persisted back here.
+
+---
+
+## 🛠️ The Tech Forge
+
+| Tech         | Version    | Role                             |
+| :----------- | :--------- | :------------------------------- |
+| **Strapi**   | 5.x (Beta) | Headless CMS & API Orchestration |
+| **Database** | PostgreSQL | Relational data persistence      |
+| **Host**     | Neon       | Serverless DB infrastructure     |
+| **Language** | TypeScript | High-reliability logic & typing  |
+
+---
+
+## 🚀 Booting the Core
+
+<details>
+<summary><b>1. Calibrate Environment</b></summary>
+
+Copy `.env.example` to `.env` and fill in your Neon and Strapi keys:
+
+```env
+DATABASE_URL=...
+STRAPI_API_TOKEN_SALT=...
+ADMIN_JWT_SECRET=...
+JWT_SECRET=...
+```
+
+</details>
+
+<details>
+<summary><b>2. Install Dependencies</b></summary>
+
+```bash
+npm install
+```
+
+</details>
+
+<details open>
+<summary><b>3. Launch Development Mode</b></summary>
+
+```bash
+npm run develop
+
+
+```
